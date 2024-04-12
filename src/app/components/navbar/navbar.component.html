@@ -1,8 +1,19 @@
 <div class="navbar">
-  <h2>NavbarText</h2>
-  <div class="routes">
-    <a href="index.php">Home</a>
-    <a href="about.php">About</a>
-    <a href="contact.php">Contact</a>
+  <h2 (click)="goHome()">NavbarText</h2>
+  <div class="navbar-right">
+    <div class="routes">
+      <a *ngFor="let route of routes" [href]="route[0]">{{route[1]}}</a>
+      <div class="hamburger" [class.open]="isHamburgerMenuOpen" (click)="toggleHamburgerMenu()">
+        <i *ngIf="!isHamburgerMenuOpen" class="fa-solid fa-bars"></i>
+        <i *ngIf="isHamburgerMenuOpen" class="fa-solid fa-xmark"></i>
+        <div class="mobile-menu" [class.open]="isHamburgerMenuOpen">
+          <a *ngFor="let route of routes" [href]="route[0]">{{route[1]}}</a>
+        </div>
+      </div>
+    </div>
+    <div class="switchDarkLightMode" (click)="toggleLightMode()">
+      <i class="fa-solid fa-moon" *ngIf="isLightModeOn"></i>
+      <i class="fa-solid fa-sun" *ngIf="!isLightModeOn"></i>
+    </div>
   </div>
 </div>
